@@ -20,4 +20,13 @@ class ArticlesController < ApplicationController
   end
 
   # add edit and update methods here
+  def edit
+    @article = Article.find(params[:id])
+  end
+
+  def update
+    @article = Article.find(params[:id]) #queries db for article and stores it as an instance var
+    @article.update(title: params[:article][:title], description: params[:article][:description]) #updates values from the form and saves changes
+    redirect_to article_path(@article) #redirect to show page
+  end
 end
